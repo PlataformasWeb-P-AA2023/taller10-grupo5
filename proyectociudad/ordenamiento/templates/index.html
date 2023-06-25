@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Ciudad</title>
+</head>
+<body>
+    <h1>Parroquias y sus Barios</h1>
+
+    <p><b>Parroquias</b></p>
+    <ol>
+    {% for p in parroquias %}
+
+        <li>
+            Nombre: {{p.nombre}} <br>
+            Tipo: {{p.tipo}} <br>
+            - <a href="{% url 'editar_parroquia' p.id %}">editar</a> <br>
+            - <a href="{% url 'eliminar_parroquia' p.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>
+            
+            <p><b>Barrios</b></p>
+            <ul type="square">
+                {% for b in p.barrios.all %}
+                <li>
+                    <span>{{b.nombre}} --> [<a href="{% url 'editar_barrio' b.id %}">editar</a>] 
+                        - [<a href="{% url 'eliminar_barrio' b.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>]</span>
+                </li>
+                {% endfor %}
+                <br>
+                - <a href="{% url 'crear_barrio_parroquia' p.id%}">Añadir un nuevo barrio</a> 
+            </ul>
+        </li>
+    <hr>
+    {% endfor %} 
+    </ol>
+
+    - <a href="{% url 'crear_parroquia' %}">Agregar parroquia</a>
+    <br>
+    - <a href="{% url 'crear_barrio' %}">Agregar barrio</a>
+</body>
+</html>

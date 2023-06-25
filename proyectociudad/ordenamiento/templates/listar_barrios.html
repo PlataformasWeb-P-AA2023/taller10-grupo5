@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Ciudad</title>
+</head>
+<body>
+    <h1>Barrios</h1>
+
+    <ol>
+        {% for b in barrios %}
+        <li>
+            Nombre: {{b.nombre}} <br>
+            Numero de Viviendas: {{b.nro_viviendas}} <br>
+            Numero de Parques: {{b.nro_parques}} <br>
+            Numero de Edificios: {{b.nro_edificios}} <br>
+            - <a href="{% url 'editar_barrio' b.id %}">editar</a> <br>
+            - <a href="{% url 'eliminar_barrio' b.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>
+        </li>
+        <hr>
+        {% endfor %}
+    </ol>
+    - <a href="{% url 'crear_barrio' %}">Agregar barrio</a>
+    <br>
+    - <a href="{% url 'index' %}">inicio</a>
+</body>
+</html>
