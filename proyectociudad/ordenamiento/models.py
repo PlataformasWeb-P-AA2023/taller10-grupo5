@@ -17,4 +17,4 @@ class Barrio(models.Model):
     parroquia = models.ForeignKey(Parroquia, on_delete=models.CASCADE, related_name="barrios")
 
     def __str__(self):
-        return "Barrio: %s - %d - %d - %d" % (self.nombre, self.nro_viviendas, self.nro_parques, self.nro_edificios)
+        return "Barrio: %s - viviendas = %d - parques = %d - edificios = %d" % (self.nombre, self.nro_viviendas, self.nro_parques, self.nro_edificios)
