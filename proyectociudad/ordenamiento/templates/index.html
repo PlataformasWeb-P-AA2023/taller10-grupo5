@@ -8,31 +8,62 @@
 <body>
     <h1>Parroquias y sus Barios</h1>
 
-    <p><b>Parroquias</b></p>
-    <ol>
-    {% for p in parroquias %}
+    {% for p in parroquias %}    
+    <table>
+        <tr>
+        <th>Parroquia</th>
+        <th>Tipo</th>
+        <th>Acción</th>
+        <th>Barrios</th>
+        <th>Accionés</th>
+        </tr>
 
+        <tr>
+        <td>{{p.nombre}}</td>
+        <td>{{p.tipo}}</td>
+        <td>
+            <a href="{% url 'editar_parroquia' p.id %}">editar</a><br>
+            <a href="{% url 'eliminar_parroquia' p.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>
+        </td>
+        
+        <td>
+            {% for b in p.barrios.all %}
+                {{b.nombre}}<br><br>
+            {% endfor %}
+        </td>
+        <td>
+            <a href="{% url 'crear_barrio_parroquia' p.id%}">Añadir un nuevo barrio</a><br>
+            {% for b in p.barrios.all %}
+            <a href="{% url 'editar_barrio' b.id %}">editar</a><br>
+            <a href="{% url 'eliminar_barrio' b.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a><br><br>
+            {% endfor %}
+        </td>
+        </tr>
+    </table> 
+    {% endfor %} 
+     
+    <!-- <ol> 
         <li>
-            Nombre: {{p.nombre}} <br>
-            Tipo: {{p.tipo}} <br>
-            - <a href="{% url 'editar_parroquia' p.id %}">editar</a> <br>
-            - <a href="{% url 'eliminar_parroquia' p.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>
+            Nombre:  <br>
+            Tipo:  <br>
+            -  <br>
+            - 
             
             <p><b>Barrios</b></p>
             <ul type="square">
-                {% for b in p.barrios.all %}
+                
                 <li>
-                    <span>{{b.nombre}} --> [<a href="{% url 'editar_barrio' b.id %}">editar</a>] 
-                        - [<a href="{% url 'eliminar_barrio' b.id %}" onclick="return confirm('¿Está seguro de la eliminación?')">eliminar</a>]</span>
+                    <span> -- [] 
+                        - []</span>
                 </li>
-                {% endfor %}
+                
                 <br>
-                - <a href="{% url 'crear_barrio_parroquia' p.id%}">Añadir un nuevo barrio</a> 
+                - 
             </ul>
         </li>
     <hr>
-    {% endfor %} 
-    </ol>
+    
+    </ol> -->
 
     - <a href="{% url 'crear_parroquia' %}">Agregar parroquia</a>
     <br>
