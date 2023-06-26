@@ -8,16 +8,16 @@
 <body>
     <h1>Parroquias y sus Barios</h1>
 
-    {% for p in parroquias %}    
     <table>
         <tr>
-        <th>Parroquia</th>
-        <th>Tipo</th>
-        <th>Acción</th>
-        <th>Barrios</th>
-        <th>Accionés</th>
+            <th>Parroquia</th>
+            <th>Tipo</th>
+            <th>Acción</th>
+            <th>Barrios</th>
+            <th>Acciones</th>
         </tr>
-
+        
+        {% for p in parroquias %}    
         <tr>
         <td>{{p.nombre}}</td>
         <td>{{p.tipo}}</td>
@@ -39,8 +39,8 @@
             {% endfor %}
         </td>
         </tr>
+        {% endfor %} 
     </table> 
-    {% endfor %} 
      
     <!-- <ol> 
         <li>
